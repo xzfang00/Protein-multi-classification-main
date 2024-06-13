@@ -101,7 +101,7 @@ def class_weight_all(Y_train,a):
 
 
 def data_preprocess(batch_size=128, shuffle=True, sample_strategy=1):
-    # 载入数据
+    
     X_train, X_test, Y_train, Y_test = load_data("Data/PSTAAP_train.mat", "Data/PSTAAP_test.mat")
     X_ori= X_train
     Y_ori= make_ylabel(Y_train)
@@ -189,7 +189,7 @@ def train_for_val(model, train_loader,X_train,targets_train, X_val,
 
 
 def train_in_k_fold(X_train, Y_train,X_ori,Y_ori, Y_label,lr,weight_decay, num_epochs, class_weights,k=5, batch_size=128):
-    # 定义交叉验证
+    
     kf = KFold(n_splits=k, shuffle=True, random_state=42)
     fold = 0
     train_calculator = Metrics()
@@ -197,18 +197,18 @@ def train_in_k_fold(X_train, Y_train,X_ori,Y_ori, Y_label,lr,weight_decay, num_e
         fold += 1
         print(f"[INFO]\tTraining on fold {fold}")
 
-        # 划分训练集和验证集
+        
         X_train_fold = X_train[train_idx]
         Y_train_fold= Y_train[train_idx]
         Y_label_fold= Y_label[train_idx]
-        # 创建数据加载器
+        
         train_dataset = list(zip(X_train_fold, Y_train_fold, Y_label_fold))
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-        # 创建模型实例
+        
         model = MultiLabelCNN().to(device)
         optimizer = optim.Adam(model.parameters(), lr=lr, betas=(0.9, 0.999), eps=1e-8, weight_decay=weight_decay)
-        # 训练模型
+        
         train_for_val(model, train_loader, X_train_fold,Y_train_fold,X_ori, Y_ori, optimizer, num_epochs,
                       train_calculator,class_weights=class_weights,is_train=True,fold=fold)
 
@@ -239,7 +239,7 @@ def load_model(model_path):
         return None
 
 
-# 预测时的阈值处理
+
 def predict_threshold(model, inputs, targets, threshold=0.5):
     model.eval()
     inputs = inputs.to(device)
