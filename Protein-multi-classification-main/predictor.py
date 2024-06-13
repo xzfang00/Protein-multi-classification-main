@@ -194,11 +194,11 @@ def integrate_and_predict():
 
 
 
-# 创建GUI界面
+
 root = tk.Tk()
 root.title("MultiLabelCNN Prediction")
 
-# 添加测试集文件路径选择框
+
 test_label = tk.Label(root, text="Choose .mat Test Set:")
 test_label.grid(row=0, column=0)
 test_entry = tk.Entry(root, width=100)
@@ -206,7 +206,6 @@ test_entry.grid(row=0, column=1)
 test_button = tk.Button(root, text="Browse", command=lambda: browse_file(test_entry))
 test_button.grid(row=0, column=2)
 
-# 添加模型文件路径选择框
 model_label = tk.Label(root, text="Choose .pth Model:")
 model_label.grid(row=1, column=0)
 model_entry = tk.Entry(root, width=100)
@@ -214,7 +213,7 @@ model_entry.grid(row=1, column=1)
 model_button = tk.Button(root, text="Browse", command=lambda: browse_model(model_entry))
 model_button.grid(row=1, column=2)
 
-# 添加预测按钮
+
 predict_button = tk.Button(root, text="Predict", command=integrate_and_predict)
 predict_button.grid(row=2, column=1)
 
