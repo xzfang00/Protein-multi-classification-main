@@ -15,7 +15,7 @@ for i in range(num_clusters):
 
 data = np.vstack(data)
 
-# 设置参数
+
 k = num_clusters
 T = 10
 batch_size = 3
@@ -28,7 +28,7 @@ centers = data[indices]
 t = 0
 
 
-labels = np.zeros(data.shape[0], dtype=int) - 1  # 初始化为-1，表示未分配
+labels = np.zeros(data.shape[0], dtype=int) - 1 
 
 
 labels[indices] = np.arange(k)
@@ -74,7 +74,7 @@ while t < T:
 
     t += 1
 
-# 输出结果
+
 print("The final set of cluster centers:")
 print(centers)
 print("Cluster label for each sample:")
